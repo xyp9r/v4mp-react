@@ -1,3 +1,6 @@
+import Clock from './components/Clock';
+import ViewCounter from './components/ViewCounter'
+
 export default function App() {
   return (
     <>
@@ -11,7 +14,7 @@ export default function App() {
               <circle cx="12" cy="12" r="10"></circle>
               <polyline points="12 6 12 12 16 14"></polyline>
             </svg>
-            <span id="clock">00:00:00 (Europe/Warsaw) |</span>
+            <Clock />
           </div>
           
           <div className="header-item views">
@@ -19,7 +22,7 @@ export default function App() {
               <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
               <circle cx="12" cy="12" r="3"></circle>
             </svg>
-            <span id="view-count">...</span>
+            <ViewCounter />
           </div>
         </div>
 
