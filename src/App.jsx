@@ -1,10 +1,11 @@
 import Clock from './components/Clock';
 import ViewCounter from './components/ViewCounter'
+import Matrix from './components/Matrix'
 
 export default function App() {
   return (
     <>
-      <canvas id="matrix"></canvas>
+      <Matrix />
       
       <div className="terminal-window">
         {/* ШАПКА */}
