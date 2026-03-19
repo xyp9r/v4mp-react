@@ -5,6 +5,7 @@ import TypingText from './components/TypingText'
 import CustomCursor from './components/CustomCursor'
 import SpotifyWidget from './components/SpotifyWidget'
 import WakaTimeWidget from './components/WakaTimeWidget'
+import TelegramStatus from './components/TelegramStatus'
 
 export default function App() {
   return (
@@ -69,7 +70,7 @@ export default function App() {
                   <path d="M20.665 3.717l-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42l10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701h-.002l.002.001l-.122 1.715c.179.035.355.067.531.097l.005-.002l.005.002l2.733 5.447c.202.4.404.8.606 1.2c.202-.4.404-.8.606-1.2l1.55-2.699c.688-.328 1.377-.657 2.065-.985l3.638 2.686c.838.462 1.441.227 1.65-.776l2.991-14.085c.306-1.23-.468-1.797-1.603-1.267z"/>
                 </svg>
                 <TypingText text="high-tier student" delay={300} />
-                <span className="status-online" id="tg-status">[connecting...]</span>
+                <TelegramStatus />
               </a>
             </li>
 
