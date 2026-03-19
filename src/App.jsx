@@ -4,6 +4,7 @@ import Matrix from './components/Matrix'
 import TypingText from './components/TypingText'
 import CustomCursor from './components/CustomCursor'
 import SpotifyWidget from './components/SpotifyWidget'
+import WakaTimeWidget from './components/WakaTimeWidget'
 
 export default function App() {
   return (
@@ -108,28 +109,7 @@ export default function App() {
           {/* ВИДЖЕТЫ (Spotify & Wakatime) */}
           <div className="status-blocks mt-40">
             <SpotifyWidget />
-
-            <div className="status-panel">
-              <div className="command-line">
-                <span className="prompt">root@v4mp.dev</span> <span className="command">wakatime --today</span>
-              </div>
-              <div className="panel-box">
-                <div className="wakatime-icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="16 18 22 12 16 6"></polyline>
-                    <polyline points="8 6 2 12 8 18"></polyline>
-                  </svg>
-                </div>
-                <div className="wakatime-info">
-                  <div className="waka-time">
-                    <span className="green-bars">&gt;&gt;</span> <span id="waka-hours">Loading...</span>
-                  </div>
-                  <div className="waka-lang" id="waka-languages">
-                    awaiting data...
-                  </div>
-                </div>
-              </div>
-            </div>
+            <WakaTimeWidget />
           </div>
 
         </div>
