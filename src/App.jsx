@@ -3,6 +3,7 @@ import ViewCounter from './components/ViewCounter'
 import Matrix from './components/Matrix'
 import TypingText from './components/TypingText'
 import CustomCursor from './components/CustomCursor'
+import SpotifyWidget from './components/SpotifyWidget'
 
 export default function App() {
   return (
@@ -106,22 +107,7 @@ export default function App() {
 
           {/* ВИДЖЕТЫ (Spotify & Wakatime) */}
           <div className="status-blocks mt-40">
-            <div className="status-panel">
-              <div className="command-line">
-                <span className="prompt">root@v4mp.dev</span> <span className="command">music --now-playing</span>
-              </div>
-              <div className="panel-box">
-                <div className="album-cover"></div>
-                <div className="track-info">
-                  <div className="track-name">
-                    <span className="green-bars">||</span> Ankle Lock
-                  </div>
-                  <div className="track-artist">
-                    by Lancey Foux, Fimiguerrero...
-                  </div>
-                </div>
-              </div>
-            </div>
+            <SpotifyWidget />
 
             <div className="status-panel">
               <div className="command-line">
