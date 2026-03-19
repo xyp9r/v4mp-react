@@ -40,8 +40,7 @@ export default function Projects({ onBack }) {
       {/* 2. СТАРЫЙ DASHBOARD ИЗ HTML */}
       <div className="project-card">
         <div className="project-header">
-          {/* Сюда потом вставишь ссылку на гитхаб старой версии */}
-          <a href="#" target="_blank" rel="noreferrer" className="project-name">Dashboard Site v1 (Vanilla)</a>
+          <a href="https://xyp9r.github.io/my-links-site/" target="_blank" rel="noreferrer" className="project-name">Dashboard Site v1 (Vanilla)</a>
           <span className="project-year">2026</span>
         </div>
         <div className="project-desc">interactive web-terminal</div>
