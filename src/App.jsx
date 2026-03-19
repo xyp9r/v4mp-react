@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import Clock from './components/Clock';
 import ViewCounter from './components/ViewCounter'
 import Matrix from './components/Matrix'
@@ -9,12 +11,17 @@ import TelegramStatus from './components/TelegramStatus'
 import DiscordStatus from './components/DiscordStatus'
 import EmailWidget from './components/EmailWidget'
 import ContextMenu from './components/ContextMenu'
+import Projects from './components/Projects'
 
 export default function App() {
+
+  const [currentPage, setCurrentPage] = useState('home');
+
   return (
     <>
       <Matrix />
       
+      {currentPage === 'home' ? (
       <div className="terminal-window">
         {/* ШАПКА */}
         <div className="terminal-header">
@@ -57,7 +64,7 @@ export default function App() {
             <div className="bio-text">
               i'm ivan, 18 y.o<br />
               smell like maison margiela when the rain stops<br /> 
-              <a href="#" className="projects-title-link">projects</a> 
+              <span onClick={() => setCurrentPage('projects')} className="projects-title-link" style={{cursor: 'pointer'}}>projects</span>
             </div>
           </div>
 
@@ -108,6 +115,9 @@ export default function App() {
 
         </div>
       </div>
+      ) : (
+        <Projects onBack={() => setCurrentPage('home')} />
+          )}
 
       {/* КАСТОМНОЕ МЕНЮ (скрыто по умолчанию) */}
       <ContextMenu />
