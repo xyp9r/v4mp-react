@@ -193,9 +193,26 @@ a, .email-btn, .menu-list li {
   width: fit-content;
 }
 
+.social-links li {
+  display: flex;
+  align-items: flex-start; /* flex-start нужен, чтобы когда коммит раскроется вниз, сама ссылка не уползла */
+  gap: 10px; /* Расстояние */
+}
+
 .social-links a:hover {
   color: #fff;
   text-shadow: 0 0 8px rgba(255, 255, 255, 0.4); /* легкое свечение */
+}
+
+#tg-status,
+#discord-status,
+.status-online-fake {
+  margin-top: 2.5px;
+}
+
+.social-links li:last-child {
+  align-items: center;
+  gap: 1px;
 }
 
 .status-online {

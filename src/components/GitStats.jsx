@@ -34,7 +34,11 @@ export default function GitStats() {
 
 	return (
 		<span className="status-online-fake" style={{ textTransform: 'none', display: 'flex', flexDirection: 'column' }}>
-			<span>
+			{/* Вешаем onClick на весь этот span и даем ему курсор пальца */}
+			<span
+				onClick={() => setIsExpanded(!isExpanded)}
+				style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}
+			>
 				[commits - {commitInfo.count}]
 				<span
 				onClick={toggleExpand}
