@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 
 export default function TelegramStatus () {
-	const [statusText, setStatusText] = useState('[connecting...]');
-	const [statusClass, setStatusClass] = useState('offline');
+	const [statusText, setStatusText] = useState<string>('[connecting...]');
+	const [statusClass, setStatusClass] = useState<string>('offline');
 
 	useEffect(() => {
 		const tgStream = new EventSource('https://tg-api-status.onrender.com/stream');
 
-		tgStream.onmessage = (event) => {
+		tgStream.onmessage = (event: MessageEvent) => {
 			const data = JSON.parse(event.data);
 			console.log('ОТВЕТ ОТ ТЕЛЕГРАМ СЕРВЕРА:', data);
 
