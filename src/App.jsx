@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import Clock from './components/Clock';
 import ViewCounter from './components/ViewCounter';
-import Matrix from './components/Matrix'
+import Matrix from './components/Matrix';
 import TypingText from './components/TypingText';
 import CustomCursor from './components/CustomCursor'
 import SpotifyWidget from './components/SpotifyWidget';

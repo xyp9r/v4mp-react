@@ -2,12 +2,14 @@ import { useEffect, useRef } from 'react';
 
 export default function Matrix() {
 	// 1. Создаем ту самую указку для нашего канваса
-	const canvasRef = useRef(null);
+	const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
 	// 2. Вся магия запускается после того как канвас появится на экране
 	useEffect(() => {
 		const canvas = canvasRef.current; // Берем элемент по указке
+		if (!canvas) return;
 		const ctx = canvas.getContext('2d');
+		if (!ctx) return;
 
 		// Функция настройки размеров
 		const setCanvasSize = () => {
@@ -19,7 +21,7 @@ export default function Matrix() {
 
 		const fontSize = 16;
 		let column = canvas.width / fontSize;
-		let drops = Array(Math.floor(column)).fill(1);
+		let drops: number[] = Array(Math.floor(column)).fill(1);
 
 		// Японские символы и цифры из твоего оригинала
 		const characters = 'アカサタナハマヤラワ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -32,7 +34,7 @@ export default function Matrix() {
 		const fps = 25; // ограничение в 25 кадров
 		const nextFrameTime = 1000 / fps;
 
-		const drawMatrix = (currentTime) => {
+		const drawMatrix = (currentTime: number) => {
 			animationFrameId = requestAnimationFrame(drawMatrix);
 
 			// считаем, сколько времени прошло с прошлого кадра
