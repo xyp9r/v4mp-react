@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 export default function Clock() {
 	// 1. Создаем переменную состояния (память), где будет желать текст времени
-	const [timeText, setTimeText] = useState('00:00:00 (Europe/Warsaw) |');
+	const [timeText, setTimeText] = useState<string>('00:00:00 (Europe/Warsaw) |');
 
 	// 2. useEffect запускается один раз при появлении часов на экране
 	useEffect(() => {
