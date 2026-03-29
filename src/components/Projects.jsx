@@ -83,13 +83,13 @@ export default function Projects({ onBack }) {
         </div>
       </div>
 
-      {/* 4. ПОРТФОЛИО */}
+      {/* 4. ИГРА КЛИКЕР */}
       <div className="project-card">
         <div className="project-header">
-          <a href="https://xyp9r.github.io/my-first-site/index.html" target="_blank" rel="noreferrer" className="project-name"> Personal Portfolio</a>
+          <a href="https://xyp9r.github.io/crypto-clicker/" target="_blank" rel="noreferrer" className="project-name">Crypto Clicker Tycoon</a>
           <span className="project-year">2026</span>
         </div>
-        <div className="project-desc">interactive developer portfolio</div>
+        <div className="project-desc">browser-based economic tycoon game</div>
         <div className="project-tags">
           <span className="tag">JavaScript (ES6)</span>
           <span className="tag">CSS3</span>
@@ -98,13 +98,13 @@ export default function Projects({ onBack }) {
         </div>
       </div>
 
-      {/* 5. ИГРА КЛИКЕР */}
+      {/* 5. ПОРТФОЛИО */}
       <div className="project-card">
         <div className="project-header">
-          <a href="https://xyp9r.github.io/crypto-clicker/" target="_blank" rel="noreferrer" className="project-name">Crypto Clicker Tycoon</a>
+          <a href="https://xyp9r.github.io/my-first-site/index.html" target="_blank" rel="noreferrer" className="project-name">First Site</a>
           <span className="project-year">2026</span>
         </div>
-        <div className="project-desc">browser-based economic tycoon game</div>
+        <div className="project-desc">first try to make a site</div>
         <div className="project-tags">
           <span className="tag">JavaScript (ES6)</span>
           <span className="tag">CSS3</span>
