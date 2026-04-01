@@ -1,20 +1,30 @@
-export default function Projects({ onBack }) {
-  return (
-    <div className="container">
-      <div className="command-line" style={{ marginBottom: '30px' }}>
-        <span className="prompt">root@v4mp.dev</span> <span className="command">cd ..</span><br />
-        <span 
-          onClick={onBack} 
-          style={{ color: '#4caf50', fontSize: '14px', marginTop: '10px', display: 'inline-block', cursor: 'pointer' }}
-        >
-          [ &lt; return to main ]
-        </span>
-      </div>
+// Добавляем MouseEvent для типизации клика
+import { MouseEvent } from 'react';
 
-      <div className="bio-text" style={{ marginBottom: '20px', textAlign: 'left' }}>
-        &gt; ls -la /projects/<br />
-        total 5
-      </div>
+// 1. Описываем контракт для пропсов (параметров) нашего компонента
+interface ProjectsProps {
+  // onBack - это функция, которая принимает событие клика по тегу <span> и ничего не возвращает (void)
+  onBack: (e: MouseEvent<HTMLSpanElement>) => void;
+}
+
+// 2. Указываем, что компонент принимает аргументы по правилам ProjectsProps
+export default function Projects({ onBack }: ProjectsProps) {
+  return (
+      <div className="container">
+        <div className="command-line" style={{ marginBottom: '30px' }}>
+          <span className="prompt">root@v4mp.dev</span> <span className="command">cd ..</span><br />
+          <span
+            onClick={onBack}
+            style={{ color: '#4caf50', fontSize: '14px', marginTop: '10px', display: 'inline-block', cursor: 'pointer' }}
+          >
+            [ &lt; return to main]
+          </span> 
+        </div>
+
+        <div className="bio-text" style={{ marginBottom: '20px', textAlign: 'left' }}>
+          &gt; ls -la /projects/<br />
+          total 5
+        </div>
 
       {/* 1. НОВЫЙ ПРОЕКТ - REACT ВЕРСИЯ */}
       <div className="project-card">
