@@ -14,7 +14,7 @@ import ContextMenu from './components/ContextMenu';
 import Projects from './components/Projects'
 import HeartOverlay from './components/HeartOverlay';
 import GitStats from './components/GitStats';
-import WakaStats from './components/WakaStats'
+import WakaStats from './components/WakaStats';
 
 export default function App() {
 

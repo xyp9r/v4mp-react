@@ -1,69 +1,121 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, MouseEvent } from 'react';
 
-export default function WakaStats({ onBack }) {
-  const [stats, setStats] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+// 1. Описываем пропсы компонента
+interface WakaStatsProps {
+  onBack: (e: MouseEvent<HTMLSpanElement>) => void;
+}
+
+// 2. ЧЕРТЕЖИ ДЛЯ API: Описываем каждый день активности
+interface WakaActivityDay {
+  grand_total: {
+    total_seconds: number;
+    text: string;
+  };
+
+  range: {
+    date: string;
+  };
+}
+
+// Описываем язык программирования
+interface WakaLanguage {
+  name: string;
+  percent: number;
+  color?: string | null;
+}
+
+// Описываем редактор кода
+interface WakaEditor {
+  name: string;
+  percent: number;
+}
+
+// 3. Обертки для ответов от сервера (у всех внутри есть массив data)
+interface ActivityResponse { data: WakaActivityDay[]; }
+interface LanguageResponse { data: WakaLanguage[]; }
+interface EditorResponse { data: WakaEditor[]; }
+
+// 4. Описываем лучший день
+interface BestDay {
+  date: string;
+  total_seconds: number;
+  text: string;
+}
+
+// финальная память которую я сохраняю на сайт
+interface WakaStatsState {
+  totalText: string;
+  avgText: string;
+  bestDay: BestDay;
+  languages: WakaLanguage[];
+  editors: WakaEditor[];
+}
+
+export default function WakaStats({ onBack }: WakaStatsProps) {
+  // 5. Подключаем интерфейсы к состояниям (стейтам)
+  const [stats, setStats] = useState<WakaStatsState | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Твои 3 официальные ссылки (Активность, Языки, Редакторы)
     const urls = [
       'https://wakatime.com/share/@xyp9r/b0c66321-93f5-479d-ac04-d5769a2b925a.json',
       'https://wakatime.com/share/@xyp9r/19d44e2c-bb91-4d1e-bf4b-077f07a014cc.json',
       'https://wakatime.com/share/@xyp9r/25fb8217-5513-40f5-9a94-d7012050c324.json'
     ];
 
-    // Запускаем 3 запроса ОДНОВРЕМЕННО
-    Promise.all(urls.map(url => fetch(url).then(res => res.json())))
-      .then(([activityRes, languagesRes, editorsRes]) => {
-        
-        const activity = activityRes.data;
-        const languages = languagesRes.data;
-        const editors = editorsRes.data;
+    // 6. Жестко указываем Тайпскрипту, какой ответ придет по каждой ссылке
+    Promise.all([
+      fetch(urls[0]).then(res => res.json() as Promise<ActivityResponse>),
+      fetch(urls[1]).then(res => res.json() as Promise<LanguageResponse>),
+      fetch(urls[2]).then(res => res.json() as Promise<EditorResponse>)
+    ])
+    .then(([activityRes, languagesRes, editorsRes]) => {
 
-        // Считаем общие часы и ищем лучший день из массива активности
-        let totalSeconds = 0;
-        let bestDay = { date: 'N/A', total_seconds: 0, text: '0 hrs' };
+      const activity = activityRes.data;
+      const languages = languagesRes.data;
+      const editors = editorsRes.data;
 
-        activity.forEach(day => {
-          const sec = day.grand_total.total_seconds;
-          totalSeconds += sec;
-          if (sec > bestDay.total_seconds) {
-            bestDay = {
-              date: day.range.date,
-              total_seconds: sec,
-              text: day.grand_total.text
-            };
-          }
-        });
+      let totalSecond = 0;
+      let bestDay: BestDay = { date: 'N/A', total_seconds: 0, text: '0 hrs' };
 
-        // Конвертируем секунды обратно в часы и минуты
-        const totalHours = Math.floor(totalSeconds / 3600);
-        const totalMins = Math.floor((totalSeconds % 3600) / 60);
-        const totalText = `${totalHours} hrs ${totalMins} mins`;
-        
-        // Считаем среднее время в день
-        const dailyAvgSeconds = totalSeconds / (activity.length || 1);
-        const avgHours = Math.floor(dailyAvgSeconds / 3600);
-        const avgMins = Math.floor((dailyAvgSeconds % 3600) / 60);
-        const avgText = `${avgHours} hrs ${avgMins} mins`;
-
-        // Сохраняем всё в состояние
-        setStats({
-          totalText,
-          avgText,
-          bestDay,
-          languages,
-          editors
-        });
-
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error("Fetch error:", err);
-        setError("Failed to load secure data");
-        setLoading(false);
+      activity.forEach(day => {
+        const sec = day.grand_total.total_seconds;
+        totalSecond += sec;
+        if (sec > bestDay.total_seconds) {
+          bestDay = {
+            date: day.range.date,
+            total_seconds: sec,
+            text: day.grand_total.text
+          };
+        }
       });
+
+      const totalHours = Math.floor(totalSecond / 3600);
+      const totalMins = Math.floor((totalSecond % 3600) / 60);
+      const totalText = `${totalHours} hrs ${totalMins} mins`;
+
+      const dailyAvgSeconds = totalSecond / (activity.length || 1);
+      const avgHours = Math.floor(dailyAvgSeconds / 3600);
+      const avgMins = Math.floor((dailyAvgSeconds % 3600) / 60);
+      const avgText = `${avgHours} hrs ${avgMins} mins`;
+
+      // Умный Тайпскрипт проверит, совпадает ли этот объект с WakaStateState
+      setStats({
+        totalText,
+        avgText,
+        bestDay,
+        languages,
+        editors 
+      });
+
+      setLoading(false);
+    })
+    .catch(err => {
+      console.error("Fetch error:", err);
+      setError("Failed to load secure data");
+      setLoading(false);
+    });
   }, []);
 
   return (
