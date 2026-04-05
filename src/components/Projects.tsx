@@ -42,7 +42,8 @@ export default function Projects({ onBack }: ProjectsProps) {
           <span className="tag">GitHub API</span>
           <span className="tag">Spotify API</span>
           <span className="tag">SoundCloud API</span>
-          <span className="tag">CounterAPI</span>
+          <span className="tag">Last.fm API</span>
+          <span className="tag">Counter API</span>
           <span className="tag">Discord Lanyard API</span>
           <span className="tag">Wakatime API</span>
           <span className="tag">Render CI/CD</span>
