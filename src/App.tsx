@@ -16,10 +16,13 @@ import HeartOverlay from './components/HeartOverlay';
 import GitStats from './components/GitStats';
 import WakaStats from './components/WakaStats';
 
+// Создаем строгий тип для страниц
+type PageState = 'home' | 'projects' | 'wakastats';
+
 export default function App() {
 
-  const [currentPage, setCurrentPage] = useState('home');
-  const [isHeartOpen, setIsHeartOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState<PageState>('home');
+  const [isHeartOpen, setIsHeartOpen] = useState<boolean>(false);
 
   return (
     <>
@@ -63,8 +66,8 @@ export default function App() {
             <span className="command"
               onClick={() => setIsHeartOpen(true)}
               style={{ cursor: 'pointer', transition: 'text-shadow 0.3s' }}
-              onMouseEnter={(e) => e.target.style.textShadow = '0 0 8px rgba(76, 175, 80, 0.8'}
-              onMouseLeave={(e) => e.target.style.textShadow = 'none'}
+              onMouseEnter={(e) => (e.target as HTMLElement).style.textShadow = '0 0 8px rgba(76, 175, 80, 0.8)'}
+              onMouseLeave={(e) => (e.target as HTMLElement).style.textShadow = 'none'}
             >
               my &lt;3.txt
             </span>
